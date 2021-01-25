@@ -23,15 +23,15 @@ $(document).ready(function(){
          event.preventDefault();  
          var name = $('#name').val();  
          var num= $('#number').val();  
-         var prefix = $('#prefix').val();  
-         if(name != '' && num != '' && prefix != '')  
+         if(name != '' && num != '')  
          {  
               $.ajax({  
                    url:"action.php",  
                    method:"POST",  
-                   data:{name:name,num:num, prefix:prefix},   
+                   data:{name:name,num:num},   
                    success:function(res)  
                    {  
+                        window.location = "index.php";
                         console.log(res);  
                       
                    }  
@@ -106,10 +106,6 @@ $(document).ready(function(){
         });
       }
     
-      setInputFilter(document.getElementById("prefix"), function(value) {
-        return /^\d*\.?\d*$/.test(value);
-      }); 
-
       setInputFilter(document.getElementById("search"), function(value) {
         return /^\d*\.?\d*$/.test(value);
       }); 

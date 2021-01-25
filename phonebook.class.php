@@ -81,9 +81,8 @@ class Phonebook {
 		 
 	}  
 
-	public static function checkDublicate($name,$number,$prefix) {
+	public static function checkDublicate($name,$prefix,$number) {
 		  self::database_connect();
-		  var_dump($name);
 		  $sql = "SELECT * FROM all_phone_book WHERE name='".$name."' AND number='".$number."' AND prefix='".$prefix."' AND deleted=0 LIMIT 1";
 		  $result = mysql_query($sql);
 		  $found=mysql_num_rows( $result);
@@ -103,15 +102,16 @@ class Phonebook {
 	/**
 	* adding new phone numbers into db, table all_phone_book
 	*/
-	public static function addPhone($name,$number,$prefix) {
+	public static function addPhone($name,$number) {
 		self::database_connect();
-		$dublicate=self::checkDublicate($name,$number,$prefix);
+		$numb=self::processPhone($number);
+		$dublicate=self::checkDublicate($name,$numb[0],$numb[1]);
 		if($dublicate==0){
 			$numb=self::processPhone($number);
 			$name=mysql_real_escape_string($name);
 			$sql = "INSERT INTO all_phone_book 
-			(prefix, number, name) VALUES ('".$prefix."', 
-				'".$numb."',
+			(prefix, number, name) VALUES ('".$numb[0]."', 
+				'".$numb[1]."',
 				'".$name."')";   
 		  $result = mysql_query($sql);
 		$id=mysql_insert_id();
@@ -119,7 +119,7 @@ class Phonebook {
 		}else{
 			return $dublicate;
 		}
-        
+        return "ok";
 		
 		//should return last insert id, or in case of dupplicate entry, it should return the id id the line
 	}
@@ -287,7 +287,7 @@ class Phonebook {
 			
 			if(count($nums) > 1) {
 				$long_code = substr($phone_str, 0, strlen(max($nums)));
-				if(strlen($phone_str) < 5) {
+				if($check_number_length  < 5) {
 					foreach ($nums as $val) {
 						$prefix = $val;
 					}
@@ -299,19 +299,20 @@ class Phonebook {
 			}
 		} else {
 			
-			
 		 $local_code = substr($phone_str, 0, 2);
 		 if($local_code == '02' || $local_code == '03' || $local_code == '07') {
 		$prefix = 40;
 		 } else {
 			$prefix = 49;
 			}
-			$phone_str = $phone_str;
+           $phone_str = $prefix.substr($phone_str, 2);
 		}
 		/**** if invalid number, then prefix is not defined *****/
-		//self::$number = substr($phone_str, strlen($prefix), strlen($phone_str));
-		//self::$prefix = '+'.$prefix;
-		return $phone_str;
+		self::$number = substr($phone_str, strlen($prefix), strlen($phone_str));
+		self::$prefix = '+'.$prefix;
+		$phone = array(self::$prefix,self::$number);
+		
+		return $phone;
 	}
 
 	

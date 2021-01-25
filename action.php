@@ -34,11 +34,10 @@ include 'phonebook.class.php';
     
 
 }
-if(isset($_POST["name"]) && isset($_POST["num"]) && isset($_POST["prefix"]))  {
+if(isset($_POST["name"]) && isset($_POST["num"]))  {
      $name=$_POST["name"];
      $number=$_POST["num"];
-     $prefix=$_POST["prefix"];
-     echo Phonebook::addPhone($name,$number, $prefix); 
+     echo Phonebook::addPhone($name,$number); 
 
  }
  ?>  

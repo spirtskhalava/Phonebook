@@ -28,9 +28,8 @@ error_reporting(E_ALL);
 		<div class="col-xs-4"><div class="input-group"> <span class="input-group-addon" id="sizing-addon2">&#x1F50D;</span> <input class="form-control" placeholder="Search..." id="search"> </div></div>
 		<form method="post" id="user_form">
 		<div class="col-xs-2"><button id="button" type="button" class="btn btn-default">Insert phone</button></div>
-		<div class="col-xs-2"><input type="text" class="form-control" id="name" placeholder="name" required></div>
-		<div class="col-xs-2"><input type="text" class="form-control" id="number" placeholder="number" required></div>
-		<div class="col-xs-2"><input type="text" class="form-control" id="prefix" placeholder="prefix" required></div>
+		<div class="col-xs-2"><input type="text" class="form-control" id="name" placeholder="Name" required></div>
+		<div class="col-xs-2"><input type="text" class="form-control" id="number" placeholder="Phone number" required></div>
 		</form>
 	</div>
 	<div class="row">
