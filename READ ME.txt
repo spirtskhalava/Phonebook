@@ -1,0 +1,54 @@
+Hi.
+
+You should implement a fully functional page that can add/retrieve/detete/search phone numbers.
+The class should prevent dupllicates.
+In the current state, the phone numbers are not centralized and are stored into several tables starting with "form_"
+This test is meant to test your jQuery, Twitter Bootstrap and PHP skills.
+You should fix the incomplete class "Phonebook".
+
+
+
+
+
+
+Use this link to make an array with the country prefix and name https://en.wikipedia.org/wiki/List_of_country_calling_codes
+If you can't validate a prefix, then: 07, 02, 03 are Romanian, else german
+
+00 will be converted to +
+'-' and space will be repalced with NULL
+
+
+Test with the following numbers the operations: Insert, attempt to duplicate insert, search, delete.
+Insert should return the last insert id, and if duplicate found, it should return the original row id
+
+
+RO:
++40-368-401454
+0742601660
++40742601660
++401234
+
+Rusia:
++79064313004
+
+UA:
++380937687938
+00380937687938
+
+DE:
++495620233
+004914281
+
+04271952763
+01725667130
+
++49-30-6789-4900
++49-30-6789-3210
++493374460196
++4933744707611
++493371621233
+
+CN:
++86-28-85056019
+
+
