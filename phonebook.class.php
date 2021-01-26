@@ -154,7 +154,7 @@ class Phonebook {
 		if(!self::$number) {
 			return false;
 		}
-		$sql = "SELECT * FROM all_phone_book WHERE number like '%".$number."%' OR prefix like '%".$prefix."%' AND deleted=0";
+		$sql = "SELECT * FROM all_phone_book WHERE (number like '%".$number."%' OR prefix like '%".$prefix."%') AND deleted=0";
 		
 		$result = mysql_query($sql);
 		$output .= '<table class="table">
