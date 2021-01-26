@@ -76,7 +76,7 @@ class Phonebook {
 	public static function database_connect()  
 	{  
 		 self::$connect = mysql_connect(self::$host, self::$username, self::$password, self::$database);  
-		
+		 mysql_query('USE admin_new');
 		 
 		 
 	}  
@@ -274,7 +274,7 @@ class Phonebook {
 		 $check_number = preg_match('/\+|(00)/', $phone_str, $match);
 		 $prefix;
 		if($check_number == 1) { 
-			$phone_str = preg_replace('/[^0-9]|(00)/', '', $phone_str);
+			$phone_str = preg_replace('/[^0-9]|/', '', $phone_str);
 			$nums = [];
 		
 			//comparing number with phone codes array 
@@ -305,7 +305,7 @@ class Phonebook {
 		 } else {
 			$prefix = 49;
 			}
-           $phone_str = $prefix.substr($phone_str, 2);
+           $phone_str = $prefix.substr($phone_str, 1);
 		}
 		/**** if invalid number, then prefix is not defined *****/
 		self::$number = substr($phone_str, strlen($prefix), strlen($phone_str));
@@ -460,7 +460,7 @@ class Phonebook {
 			["code" => 377, "country" =>  "Monaco"], 
 			["code" => 378, "country" =>  "San Marino"], 
 			["code" => 379, "country" =>  "Vatican City"], 
-			["code" => 380, "country" =>  "Ukraine"],
+			["code" => 38, "country" =>  "Ukraine"],
 			["code" => 381, "country" =>  "Serbia"],
 			["code" => 382, "country" =>  "Montenegro"],
 			["code" => 383, "country" =>  "Kosovo"],
